@@ -11,7 +11,10 @@ export default {
   components: {
     Navbar,
   },
+  mounted() {
+    this.$store.dispatch("getUser");
+  },
 };
 </script>
 <style></style>
-, RouterView
+

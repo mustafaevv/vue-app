@@ -1,12 +1,14 @@
 <template>
   <div class="form-floating mt-3">
     <input
-      :type="type"
-      id="inputEmail"
       class="form-control"
-      :placeholder="placeholder"
+      :type="type"
+      :id="label"
+      :placeholder="label"
+      @input="onUpdatedInput"
+      :value="modelValue"
     />
-    <label for="inputEmail" class="sr-only">{{ label }}</label>
+    <label :for="label" class="sr-only">{{ label }}</label>
   </div>
 </template>
 <script>
@@ -15,7 +17,12 @@ export default {
   props: {
     label: String,
     type: String,
-    placeholder: String,
+    modelValue: [String, Number],
+  },
+  methods: {
+    onUpdatedInput(e) {
+      this.$emit("update:modelValue", e.target.value);
+    },
   },
 };
 </script>

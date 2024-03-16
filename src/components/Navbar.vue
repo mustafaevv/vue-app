@@ -3,18 +3,59 @@
     class="d-flex justify-content-between align-items-center p-3 px-md-4 mb-3"
     bis_skin_checked="1"
   >
-    <RouterLink class="text-dark text-decoration-none" to="/"> Logo </RouterLink>
+    <a class="text-dark text-decoration-none" @click="toHomePage"> Logo </a>
     <nav class="my-2 my-md-0 mr-md-3">
-      <RouterLink class="p-2 text-dark text-decoration-none" :to="{ name: 'login' }">
-        Login
-      </RouterLink>
-      <RouterLink class="p-2 text-dark text-decoration-none" :to="{ name: 'register' }">
-        Register
-      </RouterLink>
+      <template v-if="isLoggedIn">
+        <RouterLink
+          class="p-2 text-dark text-decoration-none"
+          :to="{ name: 'home' }"
+        >
+          {{ user.username }}
+        </RouterLink>
+      </template>
+      <template v-if="!isLoggedIn">
+        <RouterLink
+          class="p-2 text-dark text-decoration-none"
+          :to="{ name: 'login' }"
+        >
+          Login
+        </RouterLink>
+        <RouterLink
+          class="p-2 text-dark text-decoration-none"
+          :to="{ name: 'register' }"
+        >
+          Register
+        </RouterLink>
+      </template>
     </nav>
   </div>
 </template>
 <script>
-export default {};
+import { mapGetters } from "vuex";
+import { gettersType } from "@/modules/types";
+export default {
+  methods: {
+    toHomePage() {
+      return this.$router.push({ name: "home" });
+    },
+  },
+  computed: {
+    user() {
+      return this.$store.getters[gettersType.user];
+    },
+    isLoggedIn() {
+      return this.$store.getters[gettersType.isLoggedIn];
+    },
+    isAnonymous() {
+      return this.$store.getters[gettersType.isAnonymous];
+    },
+
+    // ...mapGetters({
+    //   user: gettersType.user,
+    //   isLoggedIn: gettersType.isLoggedIn,
+    //   isAnonymous: gettersType.isAnonymous,
+    // }),
+  },
+};
 </script>
 <style scoped></style>
