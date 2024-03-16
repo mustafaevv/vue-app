@@ -3,7 +3,7 @@
     <h1>Home</h1>
     <div class="row" bis_skin_checked="1">
       <div class="loader" v-if="isLoading">
-       <Loader/>
+        <Loader />
       </div>
       <Card
         v-else

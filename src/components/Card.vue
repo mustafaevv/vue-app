@@ -25,6 +25,15 @@
             >
               Read article
             </button>
+            <button
+              :disabled="isLoading"
+              v-if="articles.author.username === user.username"
+              type="button"
+              class="btn btn-sm btn-outline-danger"
+              @click="deleleteHandle"
+            >
+              Delete
+            </button>
           </div>
           <small class="text-muted">{{
             new Date(articles.createdAt).toLocaleString("us")
@@ -35,6 +44,7 @@
   </div>
 </template>
 <script>
+import { mapState } from "vuex";
 export default {
   props: {
     articles: {
@@ -42,11 +52,23 @@ export default {
       required: true,
     },
   },
+  computed: {
+    ...mapState({
+      user: (stete) => stete.auth.user,
+      isLoading: (stete) => stete.controller.isLoading,
+    }),
+  },
   methods: {
     navigateHandle() {
       return this.$router.push(`/article/${this.articles.slug}`);
+    },
+    deleleteHandle() {
+      this.$store.dispatch("deleteArticle", this.articles.slug).then(() => {
+        this.$store.dispatch("articles");
+      });
     },
   },
 };
 </script>
 <style></style>
+, mapState
