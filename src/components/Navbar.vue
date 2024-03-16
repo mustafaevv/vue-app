@@ -12,6 +12,12 @@
         >
           {{ user.username }}
         </RouterLink>
+        <a
+          @click="logout"
+          class="p-2 text-dark text-decoration-none"
+          href="/logout"
+          >Logout</a
+        >
       </template>
       <template v-if="!isLoggedIn">
         <RouterLink
@@ -38,23 +44,16 @@ export default {
     toHomePage() {
       return this.$router.push({ name: "home" });
     },
+    logout() {
+      return this.$store.dispatch("logout");
+    },
   },
   computed: {
-    user() {
-      return this.$store.getters[gettersType.user];
-    },
-    isLoggedIn() {
-      return this.$store.getters[gettersType.isLoggedIn];
-    },
-    isAnonymous() {
-      return this.$store.getters[gettersType.isAnonymous];
-    },
-
-    // ...mapGetters({
-    //   user: gettersType.user,
-    //   isLoggedIn: gettersType.isLoggedIn,
-    //   isAnonymous: gettersType.isAnonymous,
-    // }),
+    ...mapGetters({
+      user: gettersType.user,
+      isLoggedIn: gettersType.isLoggedIn,
+      isAnonymous: gettersType.isAnonymous,
+    }),
   },
 };
 </script>
