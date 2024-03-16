@@ -12,6 +12,12 @@
         >
           {{ user.username }}
         </RouterLink>
+
+        <RouterLink
+          class="p-2 text-dark text-decoration-none"
+          :to="{ name: 'create-article' }"
+          >create-article</RouterLink
+        >
         <a
           @click="logout"
           class="p-2 text-dark text-decoration-none"
