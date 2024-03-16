@@ -34,6 +34,15 @@
             >
               Delete
             </button>
+            <button
+              :disabled="isLoading"
+              v-if="articles.author.username === user.username"
+              type="button"
+              class="btn btn-sm btn-outline-success"
+              @click="editHandle"
+            >
+              Edit
+            </button>
           </div>
           <small class="text-muted">{{
             new Date(articles.createdAt).toLocaleString("us")
@@ -66,6 +75,9 @@ export default {
       this.$store.dispatch("deleteArticle", this.articles.slug).then(() => {
         this.$store.dispatch("articles");
       });
+    },
+    editHandle() {
+      return this.$router.push(`/edt-article/${this.articles.slug}`);
     },
   },
 };
