@@ -30,8 +30,19 @@ const actions = {
       context.commit("controllerArticleStart");
       ArticlesService.deleteArticle(slug)
         .then(() => {
-          context.commit("controllerArticleSuccess")
-          resolve( )
+          context.commit("controllerArticleSuccess");
+          resolve();
+        })
+        .catch(() => context.commit("controllerArticleFailure"));
+    });
+  },
+  updateArticle(context, data) {
+    return new Promise((resolve) => {
+      context.commit("controllerArticleStart");
+      ArticlesService.updateArArticle(data.article, data.slug)
+        .then(() => {
+          context.commit("controllerArticleSuccess");
+          resolve();
         })
         .catch(() => context.commit("controllerArticleFailure"));
     });

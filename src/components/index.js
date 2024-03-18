@@ -4,3 +4,4 @@ export { default as Card } from "@/components/Card.vue";
 export { default as CardItem } from "@/components/CardItem.vue";
 export { default as Register } from "@/components/Register.vue";
 export { default as CreateCard } from "@/components/CreateCard.vue";
+export { default as ArticleForm } from "@/components/ArticleForm.vue";

@@ -43,7 +43,6 @@ const actions = {
       ArticlesService.articles()
         .then((response) => {
           context.commit("getArticlesSuccess", response.data.articles);
-          console.log(response.data.articles);
           resole(response.data.articles);
         })
         .catch(() => context.commit("getArticlesFailure"));

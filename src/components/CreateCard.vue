@@ -35,6 +35,7 @@ export default {
     ...mapState({
       isLoading: (state) => state.controller.isLoading,
     }),
+   
   },
 };
 </script>

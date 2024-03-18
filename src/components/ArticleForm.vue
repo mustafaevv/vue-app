@@ -1,42 +1,44 @@
 <template>
   <div class="w-50 mt-100 mx-auto">
-    <form @submit="createHandle">
+    <form @submit="editHandle">
       <Input type="text" label="title" v-model="title" />
       <Input type="text" label="description" v-model="description" />
       <TextArea type="text" label="body" v-model="body"></TextArea>
-      <Button type="submit" :disabled="isLoading">Create Article</Button>
+      <Button type="submit">Edit Article</Button>
     </form>
   </div>
 </template>
 <script>
-import { mapState } from "vuex";
 export default {
+  props: {
+    initialValue: {
+      type: Object,
+      required: true,
+    },
+    editHandle: {
+      type: Function,
+      required: true,
+    },
+  },
   data() {
     return {
-      title: "",
-      description: "",
-      body: "",
+      title: this.initialValue.title,
+      description: this.initialValue.description,
+      body: this.initialValue.body,
     };
   },
   methods: {
-    createHandle(e) {
-      e.preventDefault();
-      const newArticle = {
+    editArticle() {
+      const article = {
         title: this.title,
         description: this.description,
         body: this.body,
         tagList: [],
       };
-      this.$store.dispatch("createArticle", newArticle);
-      this.$router.push({name: "home"});
+      editHandle(article);
     },
-  },
-  computed: {
-    ...mapState({
-      isLoading: (state) => state.controller.isLoading,
-    }),
   },
 };
 </script>
+
 <style></style>
-import { computed } from 'vue'; mapState,

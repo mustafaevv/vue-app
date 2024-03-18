@@ -77,7 +77,7 @@ export default {
       });
     },
     editHandle() {
-      return this.$router.push(`/edt-article/${this.articles.slug}`);
+      return this.$router.push(`/edit-article/${this.articles.slug}`);
     },
   },
 };

@@ -13,6 +13,9 @@ const ArticlesService = {
   deleteArticle(slug) {
     return axios.delete(`/articles/${slug}`);
   },
+  updateArArticle(article, slug) {
+    return axios.put(`/articles/${slug}`, { article });
+  },
 };
 
 export default ArticlesService;

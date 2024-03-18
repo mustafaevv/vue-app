@@ -20,7 +20,6 @@ export default {
   },
   mounted() {
     this.$store.dispatch("articleDetail", this.$route.params.slug);
-    this.$store.dispatch("articles");
   },
 };
 </script>

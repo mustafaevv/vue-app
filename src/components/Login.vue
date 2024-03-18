@@ -45,11 +45,10 @@ export default {
       };
       this.$store
         .dispatch("login", newUser)
-        .then((user) => {
-          console.log(user);
+        .then(() => {
           this.$router.push({ name: "home" });
         })
-        .catch((error) => console.log(error));
+        .catch(() => {});
     },
   },
   computed: {
